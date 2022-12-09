@@ -1,6 +1,11 @@
 import time
+import random
 
-list = [1,3,5,4,6,2,7,0,9,8]
+# list = [1,3,5,4,6,2,7,0,9,8,11,19,13,14,16,28,29,34,33,22]
+
+list = []
+for i in range(1010):
+    list.append(random.randint(0, 1000000))
 
 sorted_list = []
 
@@ -11,9 +16,6 @@ sorted_list = []
 
 # 1 mang can sorting
 # 1 mang duoc sorted dan
-# start = time.time()
-
-start = time.time()
 
 def checking_element(idx,val):
     global sorted_list
@@ -37,45 +39,54 @@ def checking_element(idx,val):
         else:
             return checking_element(idx-1, val)
         
-    
-for i in range(len(list)):
-    sorted_list = checking_element(i, list[i])
-    
-print(sorted_list) 
-end = time.time()
-line = f'Whole process takes {end - start}'
-print(line)
+# start = time.time()
+# for i in range(len(list)):
+#     sorted_list = checking_element(i, list[i])
+# end = time.time()
+# print(sorted_list) 
+
+# line = f'Whole process takes {end - start}'
+# print(line)
 
 
 
-#WAY 2
+# WAY 2
+
+def rank_list(list):
+    global sorted_list
+    if len(list) == 1:
+        return list + sorted_list
+    else:
+        max = list[0]
+        max_idx = 0
+        i = 1
+        for i in range(len(list)):
+            if max < list[i]:
+                max = list[i]
+                max_idx = i
+        sorted_list = [max] + sorted_list
+        temp_list_1 = list[:max_idx]
+        if max_idx == len(list) - 1:
+            list = temp_list_1
+        else:
+            temp_list_2 = list[max_idx+1:]
+            list = temp_list_1 + temp_list_2
+        return rank_list(list)
 
 # start = time.time()
-
-# def rank_list(list):
-#     global sorted_list
-#     if len(list) == 1:
-#         return list + sorted_list
-#     else:
-#         max = list[0]
-#         max_idx = 0
-#         i = 1
-#         for i in range(len(list)):
-#             if max < list[i]:
-#                 max = list[i]
-#                 max_idx = i
-#         sorted_list = [max] + sorted_list
-#         temp_list_1 = list[:max_idx]
-#         if max_idx == len(list) - 1:
-#             list = temp_list_1
-#         else:
-#             temp_list_2 = list[max_idx+1:]
-#             list = temp_list_1 + temp_list_2
-#         return rank_list(list)
-
 # sorted_list = rank_list(list)
+# end = time.time()
 # print(sorted_list)
 
+# line = f'Whole process takes {end - start}'
+# print(line)
+
+
+# WAY 3 BUILT-IN FUNCTION
+
+# start = time.time()
+# list.sort()
 # end = time.time()
+# print(list)
 # line = f'Whole process takes {end - start}'
 # print(line)
