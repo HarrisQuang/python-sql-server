@@ -13,73 +13,69 @@ sorted_list = []
 # 1 mang duoc sorted dan
 # start = time.time()
 
-# def checking_element(idx,val):
-#     global sorted_list
-#     if idx < 0:
-#         temp_list_1 = [val]
-#         sorted_list = temp_list_1 + sorted_list
-#         return sorted_list
-#     if idx == 0 and len(sorted_list) == 0:
-#         print("Test1")
-#         sorted_list.append(list[idx])
-#         return sorted_list
-#     else:
-#         print("Test2")
-#         if sorted_list[idx-1] <= val:
-#             print('1-', sorted_list)
-#             temp_list_1 = sorted_list[:idx]
-#             print('temp 1', temp_list_1)
-#             temp_list_1.append(val)
-#             print('temp 2', temp_list_1)
-#             try:
-#                 temp_list_2 = sorted_list[idx:]
-#                 sorted_list = temp_list_1 + temp_list_2
-#             except:
-#                 sorted_list = temp_list_1
-#             print('2-', sorted_list)
-#             return sorted_list
-#         else:
-#             return checking_element(idx-1, val)
+start = time.time()
+
+def checking_element(idx,val):
+    global sorted_list
+    if idx < 0:
+        temp_list_1 = [val]
+        sorted_list = temp_list_1 + sorted_list
+        return sorted_list
+    if idx == 0 and len(sorted_list) == 0:
+        sorted_list.append(list[idx])
+        return sorted_list
+    else:
+        if sorted_list[idx-1] <= val:
+            temp_list_1 = sorted_list[:idx]
+            temp_list_1.append(val)
+            try:
+                temp_list_2 = sorted_list[idx:]
+                sorted_list = temp_list_1 + temp_list_2
+            except:
+                sorted_list = temp_list_1
+            return sorted_list
+        else:
+            return checking_element(idx-1, val)
         
     
-# for i in range(len(list)):
-#     print(i)
-#     sorted_list = checking_element(i, list[i])
-#     print(sorted_list)
+for i in range(len(list)):
+    sorted_list = checking_element(i, list[i])
     
-# end = time.time()
-# line = f'Whole process takes {end - start}'
-# print(line)
+print(sorted_list) 
+end = time.time()
+line = f'Whole process takes {end - start}'
+print(line)
 
 
 
 #WAY 2
-start = time.time()
 
-def rank_list(list):
-    global sorted_list
-    if len(list) == 1:
-        return list + sorted_list
-    else:
-        max = list[0]
-        max_idx = 0
-        i = 1
-        for i in range(len(list)):
-            if max < list[i]:
-                max = list[i]
-                max_idx = i
-        sorted_list = [max] + sorted_list
-        temp_list_1 = list[:max_idx]
-        if max_idx == len(list) - 1:
-            list = temp_list_1
-        else:
-            temp_list_2 = list[max_idx+1:]
-            list = temp_list_1 + temp_list_2
-        return rank_list(list)
+# start = time.time()
 
-sorted_list = rank_list(list)
-print(sorted_list)
+# def rank_list(list):
+#     global sorted_list
+#     if len(list) == 1:
+#         return list + sorted_list
+#     else:
+#         max = list[0]
+#         max_idx = 0
+#         i = 1
+#         for i in range(len(list)):
+#             if max < list[i]:
+#                 max = list[i]
+#                 max_idx = i
+#         sorted_list = [max] + sorted_list
+#         temp_list_1 = list[:max_idx]
+#         if max_idx == len(list) - 1:
+#             list = temp_list_1
+#         else:
+#             temp_list_2 = list[max_idx+1:]
+#             list = temp_list_1 + temp_list_2
+#         return rank_list(list)
 
-end = time.time()
-line = f'Whole process takes {end - start}'
-print(line)
+# sorted_list = rank_list(list)
+# print(sorted_list)
+
+# end = time.time()
+# line = f'Whole process takes {end - start}'
+# print(line)
