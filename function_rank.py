@@ -1,10 +1,8 @@
 import time
 import random
 
-# list = [1,3,5,4,6,2,7,0,9,8,11,19,13,14,16,28,29,34,33,22]
-
 list = []
-for i in range(1010):
+for i in range(1040):
     list.append(random.randint(0, 1000000))
 
 sorted_list = []
@@ -39,39 +37,39 @@ def checking_element(idx,val):
         else:
             return checking_element(idx-1, val)
         
-# start = time.time()
-# for i in range(len(list)):
-#     sorted_list = checking_element(i, list[i])
-# end = time.time()
-# print(sorted_list) 
+start = time.time()
+for i in range(len(list)):
+    sorted_list = checking_element(i, list[i])
+end = time.time()
+print(sorted_list) 
 
-# line = f'Whole process takes {end - start}'
-# print(line)
+line = f'Whole process takes {end - start}'
+print(line)
 
 
 
 # WAY 2
 
-def rank_list(list):
-    global sorted_list
-    if len(list) == 1:
-        return list + sorted_list
-    else:
-        max = list[0]
-        max_idx = 0
-        i = 1
-        for i in range(len(list)):
-            if max < list[i]:
-                max = list[i]
-                max_idx = i
-        sorted_list = [max] + sorted_list
-        temp_list_1 = list[:max_idx]
-        if max_idx == len(list) - 1:
-            list = temp_list_1
-        else:
-            temp_list_2 = list[max_idx+1:]
-            list = temp_list_1 + temp_list_2
-        return rank_list(list)
+# def rank_list(list):
+#     global sorted_list
+#     if len(list) == 1:
+#         return list + sorted_list
+#     else:
+#         max = list[0]
+#         max_idx = 0
+#         i = 1
+#         for i in range(len(list)):
+#             if max < list[i]:
+#                 max = list[i]
+#                 max_idx = i
+#         sorted_list = [max] + sorted_list
+#         temp_list_1 = list[:max_idx]
+#         if max_idx == len(list) - 1:
+#             list = temp_list_1
+#         else:
+#             temp_list_2 = list[max_idx+1:]
+#             list = temp_list_1 + temp_list_2
+#         return rank_list(list)
 
 # start = time.time()
 # sorted_list = rank_list(list)
